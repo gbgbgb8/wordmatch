@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let rightWords = [];
     let startTime;
     let matchedPairs = 0;
+    let timerInterval;
 
     fetch('01.json')
         .then(response => response.json())
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         leftWords.forEach(word => {
             const div = document.createElement('div');
-            div.className = 'word';
+            div.className = 'word left';
             div.innerText = word;
             div.addEventListener('click', () => selectWord(div, 'left'));
             leftColumn.appendChild(div);
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         rightWords.forEach(word => {
             const div = document.createElement('div');
-            div.className = 'word';
+            div.className = 'word right';
             div.innerText = word;
             div.addEventListener('click', () => selectWord(div, 'right'));
             rightColumn.appendChild(div);
@@ -102,13 +103,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startTimer() {
         startTime = Date.now();
-        setInterval(() => {
+        timerInterval = setInterval(() => {
             const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
             timerElement.innerText = `Time: ${elapsedTime}s`;
         }, 1000);
     }
 
     function stopTimer() {
+        clearInterval(timerInterval);
         const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
         alert(`Game over! You matched all pairs in ${elapsedTime} seconds.`);
     }
