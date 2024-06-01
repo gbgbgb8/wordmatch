@@ -1,6 +1,3 @@
-### README.md
-
-```markdown
 # Word Match Game
 
 ## Overview
