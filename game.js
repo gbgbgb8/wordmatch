@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startGame() {
         shuffleArray(wordPairs);
+        matchedPairs = 0; // Ensure matchedPairs is reset at the start
         loadNextSet();
         startTimer();
     }
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         leftWords.forEach(word => {
             const div = document.createElement('div');
-            div.className = 'word left';
+            div.className = 'word left animate__animated';
             div.innerText = word;
             div.addEventListener('click', () => selectWord(div, 'left'));
             leftColumn.appendChild(div);
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         rightWords.forEach(word => {
             const div = document.createElement('div');
-            div.className = 'word right';
+            div.className = 'word right animate__animated';
             div.innerText = word;
             div.addEventListener('click', () => selectWord(div, 'right'));
             rightColumn.appendChild(div);
@@ -78,16 +79,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const rightWord = rightSelected.innerText;
 
             if (wordPairs.find(pair => pair[0] === leftWord && pair[1] === rightWord)) {
-                leftSelected.classList.add('matched');
-                rightSelected.classList.add('matched');
+                leftSelected.classList.add('matched', 'animate__bounceOut');
+                rightSelected.classList.add('matched', 'animate__bounceOut');
                 setTimeout(() => {
                     leftSelected.classList.add('hidden');
                     rightSelected.classList.add('hidden');
                     checkGameState();
-                }, 500);
+                }, 1000);
             } else {
-                leftSelected.classList.remove('selected');
-                rightSelected.classList.remove('selected');
+                leftSelected.classList.add('non-matched', 'animate__shakeX');
+                rightSelected.classList.add('non-matched', 'animate__shakeX');
+                setTimeout(() => {
+                    leftSelected.classList.remove('selected', 'non-matched', 'animate__shakeX');
+                    rightSelected.classList.remove('selected', 'non-matched', 'animate__shakeX');
+                }, 1000);
             }
         }
     }
