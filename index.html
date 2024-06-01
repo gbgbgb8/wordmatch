@@ -8,6 +8,11 @@
 </head>
 <body>
     <div id="app"></div>
-    <script type="module" src="app.js"></script>
+    <script type="module">
+        import { h, render, Component } from 'https://unpkg.com/preact@10.5.13/dist/preact.module.js';
+        import { useState, useEffect } from 'https://unpkg.com/preact@10.5.13/hooks/dist/hooks.module.js';
+        import Game from './app.js';
+        render(h(Game), document.getElementById('app'));
+    </script>
 </body>
 </html>

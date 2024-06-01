@@ -1,5 +1,5 @@
-import { h, render, Component } from 'preact';
-import { useState, useEffect } from 'preact/hooks';
+import { h } from 'https://unpkg.com/preact@10.5.13/dist/preact.module.js';
+import { useState, useEffect } from 'https://unpkg.com/preact@10.5.13/hooks/dist/hooks.module.js';
 
 const fetchWordPairs = async () => {
     const response = await fetch('01.json');
@@ -113,4 +113,4 @@ const Game = () => {
     );
 };
 
-render(<Game />, document.getElementById('app'));
+export default Game;
