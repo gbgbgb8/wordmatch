@@ -1,5 +1,5 @@
-import { h } from 'https://unpkg.com/preact@10.5.13/dist/preact.module.js';
-import { useState, useEffect } from 'https://unpkg.com/preact@10.5.13/hooks/dist/hooks.module.js';
+import { h } from './preact.module.js';
+import { useState, useEffect } from './hooks.module.js';
 
 const fetchWordPairs = async () => {
     const response = await fetch('01.json');
@@ -27,7 +27,7 @@ const Timer = ({ start }) => {
     return <div className="timer">Time: {time}s</div>;
 };
 
-const Game = () => {
+export const Game = () => {
     const [wordPairs, setWordPairs] = useState({});
     const [words, setWords] = useState([]);
     const [synonyms, setSynonyms] = useState([]);
@@ -112,5 +112,3 @@ const Game = () => {
         </div>
     );
 };
-
-export default Game;

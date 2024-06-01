@@ -1,0 +1,1 @@
+export * from 'https://unpkg.com/preact@10.5.13/dist/preact.module.js';
