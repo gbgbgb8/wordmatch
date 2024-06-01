@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let leftWords = [];
     let rightWords = [];
     let startTime;
-    let matchedPairs = 0;
+    let matchedCount = 0;  // Track the number of matched pairs
     let timerInterval;
 
     fetch('01.json')
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startGame() {
         shuffleArray(wordPairs);
-        matchedPairs = 0; // Ensure matchedPairs is reset at the start
+        matchedCount = 0; // Reset matched count
         loadNextSet();
         startTimer();
     }
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         leftColumn.innerHTML = '';
         rightColumn.innerHTML = '';
 
-        const currentPairs = wordPairs.slice(matchedPairs, matchedPairs + 5);
+        const currentPairs = wordPairs.slice(matchedCount, matchedCount + 5);
         leftWords = currentPairs.map(pair => pair[0]);
         rightWords = currentPairs.map(pair => pair[1]);
 
@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(() => {
                     leftSelected.classList.add('hidden');
                     rightSelected.classList.add('hidden');
+                    matchedCount++;
                     checkGameState();
                 }, 1000);
             } else {
@@ -98,8 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function checkGameState() {
-        matchedPairs += 5;
-        if (matchedPairs >= wordPairs.length) {
+        if (matchedCount >= wordPairs.length) {
             stopTimer();
         } else {
             loadNextSet();
