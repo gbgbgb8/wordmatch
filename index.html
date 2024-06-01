@@ -51,11 +51,6 @@
 
         const darkmode = new Darkmode(options);
         darkmode.showWidget();
-
-        // Automatically enable dark mode unless OS theme is explicitly light
-        if (!window.matchMedia || !window.matchMedia('(prefers-color-scheme: light)').matches) {
-            darkmode.toggle();
-        }
     </script>
 </body>
 </html>
