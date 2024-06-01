@@ -1,0 +1,15 @@
+{
+    "description": "Instead of using basic food adjectives, try using these more descriptive alternatives",
+    "pairs": {
+        "tasty": "delectable",
+        "yummy": "scrumptious",
+        "spicy": "piquant",
+        "sweet": "sugary",
+        "bitter": "acrid",
+        "salty": "briny",
+        "sour": "tart",
+        "bland": "insipid",
+        "rich": "savory",
+        "crispy": "crunchy"
+    }
+}

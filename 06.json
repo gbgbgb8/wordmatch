@@ -1,0 +1,15 @@
+{
+    "description": "Instead of using simple nature words, try using these more vivid alternatives",
+    "pairs": {
+        "forest": "woodland",
+        "river": "stream",
+        "mountain": "peak",
+        "ocean": "sea",
+        "flower": "blossom",
+        "tree": "oak",
+        "rain": "drizzle",
+        "wind": "breeze",
+        "sun": "solar",
+        "moon": "lunar"
+    }
+}

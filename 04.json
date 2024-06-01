@@ -1,0 +1,15 @@
+{
+    "description": "Instead of using common action verbs, try using these more dynamic alternatives",
+    "pairs": {
+        "run": "sprint",
+        "eat": "devour",
+        "talk": "converse",
+        "look": "gaze",
+        "walk": "stroll",
+        "jump": "leap",
+        "think": "ponder",
+        "buy": "purchase",
+        "help": "assist",
+        "write": "scribe"
+    }
+}

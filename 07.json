@@ -1,0 +1,15 @@
+{
+    "description": "Instead of using basic character traits, try using these more precise alternatives",
+    "pairs": {
+        "kind": "benevolent",
+        "brave": "valiant",
+        "smart": "astute",
+        "funny": "hilarious",
+        "mean": "malicious",
+        "honest": "truthful",
+        "lazy": "indolent",
+        "friendly": "amiable",
+        "rude": "impolite",
+        "shy": "bashful"
+    }
+}

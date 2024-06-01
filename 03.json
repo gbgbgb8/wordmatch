@@ -1,0 +1,15 @@
+{
+    "description": "Instead of using basic emotions, try using these more nuanced or vivid alternatives",
+    "pairs": {
+        "happy": "elated",
+        "sad": "despondent",
+        "angry": "irate",
+        "scared": "petrified",
+        "confused": "befuddled",
+        "excited": "thrilled",
+        "nervous": "anxious",
+        "surprised": "astonished",
+        "tired": "exhausted",
+        "bored": "apathetic"
+    }
+}
