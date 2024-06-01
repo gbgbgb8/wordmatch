@@ -123,4 +123,3 @@ To run the game, simply open the `index.html` file in a web browser. The game wi
 - Implement a scoring system to track player performance.
 
 Enjoy playing the Word Match Game!
-```
