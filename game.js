@@ -40,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
         leftColumn.innerHTML = '';
         rightColumn.innerHTML = '';
 
-        const currentPairs = wordPairs.slice(matchedPairs, matchedPairs + 5);
-        leftWords = currentPairs.map(pair => pair[0]);
-        rightWords = currentPairs.map(pair => pair[1]);
+        const remainingPairs = wordPairs.slice(matchedPairs, matchedPairs + 5);
+        leftWords = remainingPairs.map(pair => pair[0]);
+        rightWords = remainingPairs.map(pair => pair[1]);
 
         shuffleArray(leftWords);
         shuffleArray(rightWords);
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkGameState() {
         if (matchedPairs >= totalPairs) {
             stopTimer();
-        } else {
+        } else if (leftColumn.childElementCount === 0 || rightColumn.childElementCount === 0) {
             loadNextSet();
         }
     }
