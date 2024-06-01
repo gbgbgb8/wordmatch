@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const descriptionElement = document.getElementById('description');
 
     let wordPairs = [];
+    let remainingPairs = [];
     let leftWords = [];
     let rightWords = [];
     let startTime;
@@ -19,11 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
             descriptionElement.innerText = data.description;
             wordPairs = Object.entries(data.pairs);
             totalPairs = wordPairs.length; // Set totalPairs to the length of wordPairs
+            remainingPairs = [...wordPairs]; // Initialize remaining pairs with all word pairs
             startGame();
         });
 
     function startGame() {
-        shuffleArray(wordPairs);
+        shuffleArray(remainingPairs);
         matchedPairs = 0; // Reset matched pairs count
         loadNextSet();
         startTimer();
@@ -40,9 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
         leftColumn.innerHTML = '';
         rightColumn.innerHTML = '';
 
-        const remainingPairs = wordPairs.slice(matchedPairs, matchedPairs + 5);
-        leftWords = remainingPairs.map(pair => pair[0]);
-        rightWords = remainingPairs.map(pair => pair[1]);
+        const currentPairs = remainingPairs.slice(0, 5);
+        leftWords = currentPairs.map(pair => pair[0]);
+        rightWords = currentPairs.map(pair => pair[1]);
 
         shuffleArray(leftWords);
         shuffleArray(rightWords);
@@ -80,12 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const leftWord = leftSelected.innerText;
             const rightWord = rightSelected.innerText;
 
-            if (wordPairs.find(pair => pair[0] === leftWord && pair[1] === rightWord)) {
+            if (remainingPairs.find(pair => pair[0] === leftWord && pair[1] === rightWord)) {
                 leftSelected.classList.add('matched', 'animate__bounceOut');
                 rightSelected.classList.add('matched', 'animate__bounceOut');
                 setTimeout(() => {
                     leftSelected.classList.add('hidden');
                     rightSelected.classList.add('hidden');
+                    remainingPairs = remainingPairs.filter(pair => pair[0] !== leftWord && pair[1] !== rightWord); // Remove matched pair
                     matchedPairs++;
                     checkGameState();
                 }, 1000);
@@ -103,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkGameState() {
         if (matchedPairs >= totalPairs) {
             stopTimer();
-        } else if (leftColumn.childElementCount === 0 || rightColumn.childElementCount === 0) {
+        } else if (remainingPairs.length > 0) {
             loadNextSet();
         }
     }
