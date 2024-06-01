@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Match the Synonyms Game</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Word Match Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #game-container { display: flex; justify-content: space-between; margin: 20px; }
+        .word-column { width: 45%; }
+        .word { padding: 10px; margin: 5px; background-color: #f0f0f0; cursor: pointer; }
+        .matched { background-color: #d0ffd0; }
+        .hidden { display: none; }
+        #timer { margin: 20px; font-size: 1.5em; }
+    </style>
 </head>
 <body>
-    <div id="app"></div>
-    <script type="module">
-        import { h, render } from './preact.module.js';
-        import { Game } from './app.js';
-        render(h(Game), document.getElementById('app'));
-    </script>
+    <h1>Word Match Game</h1>
+    <div id="description"></div>
+    <div id="timer">Time: 0s</div>
+    <div id="game-container">
+        <div id="left-column" class="word-column"></div>
+        <div id="right-column" class="word-column"></div>
+    </div>
+    <script src="game.js"></script>
 </body>
 </html>
