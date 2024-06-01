@@ -15,10 +15,16 @@
         .word.non-matched { background-color: #ffd0d0; }
         .word.hidden { display: none; }
         #timer { margin: 20px; font-size: 1.5em; }
+        #dropdown-container { margin: 20px; }
     </style>
 </head>
 <body>
     <h1>Word Match Game</h1>
+    <div id="dropdown-container">
+        <select id="game-select">
+            <option value="">Select a game</option>
+        </select>
+    </div>
     <div id="description"></div>
     <div id="timer">Time: 0s</div>
     <div id="game-container">

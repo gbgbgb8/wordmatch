@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const rightColumn = document.getElementById('right-column');
     const timerElement = document.getElementById('timer');
     const descriptionElement = document.getElementById('description');
+    const gameSelect = document.getElementById('game-select');
 
     let wordPairs = [];
     let remainingPairs = [];
@@ -14,15 +15,39 @@ document.addEventListener('DOMContentLoaded', function() {
     let totalPairs = 0;
     let timerInterval;
 
-    fetch('01.json')
-        .then(response => response.json())
-        .then(data => {
-            descriptionElement.innerText = data.description;
-            wordPairs = Object.entries(data.pairs);
-            totalPairs = wordPairs.length; // Set totalPairs to the length of wordPairs
-            remainingPairs = [...wordPairs]; // Initialize remaining pairs with all word pairs
-            startGame();
-        });
+    function loadDropdown() {
+        for (let i = 1; i <= 99; i++) {
+            fetch(`0${i}.json`)
+                .then(response => {
+                    if (response.ok) return response.json();
+                    throw new Error('File not found');
+                })
+                .then(data => {
+                    const option = document.createElement('option');
+                    option.value = `0${i}.json`;
+                    option.text = data.description;
+                    gameSelect.appendChild(option);
+                })
+                .catch(error => {
+                    console.log(`0${i}.json not found`);
+                });
+        }
+    }
+
+    gameSelect.addEventListener('change', function() {
+        const selectedFile = gameSelect.value;
+        if (selectedFile) {
+            fetch(selectedFile)
+                .then(response => response.json())
+                .then(data => {
+                    descriptionElement.innerText = data.description;
+                    wordPairs = Object.entries(data.pairs);
+                    totalPairs = wordPairs.length; // Set totalPairs to the length of wordPairs
+                    remainingPairs = [...wordPairs]; // Initialize remaining pairs with all word pairs
+                    startGame();
+                });
+        }
+    });
 
     function startGame() {
         shuffleArray(remainingPairs);
@@ -113,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function startTimer() {
         startTime = Date.now();
+        clearInterval(timerInterval); // Clear any existing timer interval
         timerInterval = setInterval(() => {
             const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
             timerElement.innerText = `Time: ${elapsedTime}s`;
@@ -124,4 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
         alert(`Game over! You matched all pairs in ${elapsedTime} seconds.`);
     }
+
+    loadDropdown();
 });
